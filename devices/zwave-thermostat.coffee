@@ -57,7 +57,7 @@ module.exports = (env) ->
 
           if data.class_id is 67
             @_base.debug "update temperture", data.value
-            @_setSetpoint(parseInt(data.value))
+            @_setSetpoint(parseFloat(data.value))
             @_setValve(parseInt(data.value) / 28 * 100) #28 == 100%
             @_setSynced(true)
             @timestamp = (new Date()).getTime()
@@ -86,7 +86,7 @@ module.exports = (env) ->
         else
           @_base.info "Please wake up ", @name, " device has no value_id yet"
 
-        @_setSetpoint(parseInt(temperatureSetpoint));
+        @_setSetpoint(parseFloat(temperatureSetpoint));
         resolve()
 
     getTemperature: -> Promise.resolve(@_temperatureSetpoint)
