@@ -42,5 +42,18 @@ module.exports = {
         description: "After this timeout the sync status is reset to false, in minutes"
         type: "integer"
         default: 0
+  },
+  ZwaveTemperatureSensor: {
+    title: "ZWave temperature sensor options"
+    type: "object"
+    properties:
+      node:
+        description: "The zwave nodeid"
+        type: "integer"
+        default: 0
+      syncTimeout:
+        description: "After this timeout the sync status is reset to false, in minutes"
+        type: "integer"
+        default: 0
   }
 }

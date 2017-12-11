@@ -21,6 +21,10 @@ module.exports = (env) ->
     {
       "name": "ZWave-usb Window Sensor"
       "class": "ZwaveWindowSensor"
+    },
+    {
+      "name": "ZWave-usb Temperature Sensor"
+      "class": "ZwaveTemperatureSensor"
     }
   ]
 
