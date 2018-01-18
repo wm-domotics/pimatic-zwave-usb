@@ -5,7 +5,7 @@ module.exports = (env) ->
   Promise = env.require 'bluebird'
   _ = env.require 'lodash'
   commons = require('pimatic-plugin-commons')(env)
-  
+
   class ZwaveThermostat extends env.devices.HeatingThermostat
     constructor: (@config, @plugin, lastState) ->
       @_base = commons.base @, @config.class
@@ -58,7 +58,7 @@ module.exports = (env) ->
           if data.class_id is 67
             @_base.debug "update temperture", data.value
             @_setSetpoint(parseFloat(data.value))
-            @_setValve(parseInt(data.value) / 28 * 100) #28 == 100%
+            #@_setValve(parseInt(data.value) / 28 * 100) #28 == 100%
             @_setSynced(true)
             @timestamp = (new Date()).getTime()
 
@@ -66,6 +66,11 @@ module.exports = (env) ->
             @_base.debug "Update battery", data.value
             battery_value = if parseInt(data.value) < 5 then 'LOW' else 'OK'
             @_setBattery(battery_value)
+
+          if data.class is 38
+            @_base.debug "Update valve", data.value
+            @_setValve(parseFloat(data.value))
+
 
     _callbackHandler: () ->
       return (response) =>
