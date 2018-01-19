@@ -69,7 +69,8 @@ module.exports = (env) ->
 
           if data.class is 38
             @_base.debug "Update valve", data.value
-            @_setValve(parseFloat(data.value))
+            @_setValve(parseInt(data.value))
+            @timestamp = (new Date()).getTime()
 
 
     _callbackHandler: () ->
