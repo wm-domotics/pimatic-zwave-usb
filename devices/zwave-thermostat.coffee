@@ -67,7 +67,7 @@ module.exports = (env) ->
             battery_value = if parseInt(data.value) < 5 then 'LOW' else 'OK'
             @_setBattery(battery_value)
 
-          if data.class is 38
+          if data.class_id is 38
             @_base.debug "Update valve", data.value
             @_setValve(parseInt(data.value))
             @timestamp = (new Date()).getTime()
